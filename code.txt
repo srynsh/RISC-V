@@ -1,0 +1,91 @@
+Report for Lab - 8
+
+I wrote helper functions to get a number from a binary string, to get a binary string from a hex.
+Then I just brute forced the procedure, for this I first converted the hex to a binary and then I parsed the binary instruction to get the values of parameters like opcode, rd, rs1, func3 and so on. 
+
+For testing I used a bunch of codes.
+Only 3 of them are availabke as the others I did not save.
+
+Like :
+
+--------------------------------------------------
+
+00100b93
+00000d93
+00000cb3
+017a7c33
+017c0a63
+020a0263
+001c8c93
+001a5a13
+00000263
+000a0a63
+00098d33
+019d1d33
+01ad8db3
+00000263
+01b585b3
+00008067
+
+addi x23, x0, 1
+addi x27, x0, 0
+add x25, x0, x0
+and x24, x20, x23
+beq x24, x23, L1
+beq x20, x0, L2
+addi x25, x25, 1
+srli x20, x20, 1
+beq x0, x0, L1
+L1:
+beq x20, x0, L2
+add x26, x19, x0
+sll x26, x26, x25
+add x27, x27, x26
+beq x0, x0, L2
+L2:
+add x11, x11, x27
+jalr x0, 0(x1)
+
+-------------------------------------------------
+
+01748333
+37df8493
+00649c63
+401482b3
+00928463
+00318663
+010001b7
+0293ac23
+003204e7
+
+add x6, x9, x23
+addi x9, x31, 893
+bne x9, x6, L1
+sub x5, x9, x1
+beq x5, x9, L2
+beq x3, x3, L1
+L2:
+lui x3, 4096
+sw x9, 56(x7)
+L1:
+jalr x9, 3(x4)
+
+----------------------------------------------------
+
+12518493
+00929437
+0092a483
+fe308ce3
+00808463
+028fa6a3
+01648433
+
+addi x9, x3, 293
+L1:
+lui x8, 2345
+lw x9, 9(x5)
+beq x1, x3, L1
+beq x1, x8, L2
+sw x8, 45(x31)
+L2:
+add x8, x9, x22
